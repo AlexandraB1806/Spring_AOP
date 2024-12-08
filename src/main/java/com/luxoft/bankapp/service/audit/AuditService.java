@@ -21,7 +21,7 @@ public class AuditService implements Audit {
     }
 
     @Override
-    @EventListener
+    @EventListener(condition = "#event.amount >= @eventConditionFilter.depositLimit")
     public void auditOperation(DepositEvent event) {
         events.add(event);
         System.out.println("ACCOUNT ID: " + event.getAccountId() + " "
@@ -30,7 +30,7 @@ public class AuditService implements Audit {
     }
 
     @Override
-    @EventListener
+    @EventListener(condition = "#event.amount >= @eventConditionFilter.withdrawalLimit")
     public void auditOperation(WithdrawEvent event) {
         events.add(event);
         System.out.println("ACCOUNT ID: "
@@ -52,5 +52,4 @@ public class AuditService implements Audit {
     public List<AccountEvent> getEvents() {
         return new ArrayList<>(events);
     }
-
 }
