@@ -102,5 +102,4 @@ public class BankApplicationTests3 {
 
         assertEquals(account.getBalance(), balance);
     }
-
 }
